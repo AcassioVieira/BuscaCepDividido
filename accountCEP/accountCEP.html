@@ -1,0 +1,44 @@
+<template>
+    <!-- sldsValidatorIgnore -->
+    <div class="slds-p-around_medium slds-card slds-card_boundary">
+        <div class="slds-media slds-m-bottom_small slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:investment_account" size="medium" variant="slds-icon-inverse"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-card__header-link slds-text-heading_small">Consulta de CEP</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+        <div class="slds-section slds-is-open">
+            <h3 class="slds-section__title"></h3>
+            <div class="slds-section__content">
+                <div class="slds-form slds-form_horizontal">
+                    <lightning-layout class="slds-m-bottom_x-small slds-wrap" multiple-rows="true">
+                        <lightning-input class="slds-p-right_none slds-p-left_none" label="CEP" placeholder="99999-999" type="text" variant="standard"></lightning-input>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-bottom_x-small slds-wrap" multiple-rows="true">
+                        <lightning-button onclick={searchingForCEP} class="slds-m-top_small slds-theme_brand" variant="brand" label="Buscar"></lightning-button>
+                    </lightning-layout>
+                </div>
+            </div>
+        </div>
+        <template if:true={Address}>
+            <div>Rua: <span>{Address.logradouro}</span></div>
+            <div>Cidade: <span>{Address.localidade}</span></div>
+            <div>UF: <span>{Address.uf}</span></div>
+            <lightning-layout class="slds-m-bottom_x-small slds-wrap" multiple-rows="true">
+                <lightning-button onclick={saveAccount} class="slds-m-top_small slds-theme_brand" variant="success" label="Salvar"></lightning-button>
+                <lightning-button onclick={clearAccount} style="margin-left:10px;" class="slds-m-top_small slds-theme_brand" variant="destructive" label="Cancelar"></lightning-button>
+            </lightning-layout>
+        </template>
+        <template if:true={AddressError}>
+            <lightning-layout class="slds-m-bottom_x-small slds-wrap" multiple-rows="true">
+                <div>CEP inválido ou não encontramos, por favor certifique-se de digitar corretamente!</div>
+            </lightning-layout>
+        </template>
+    </div>
+    
+</template>
+
+  
